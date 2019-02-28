@@ -6,12 +6,35 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import utils.CalculateIntrest;
+import utils.Copier;
+
 public class SlideShow {
 	
 	public List<Slide> currentSlides = new ArrayList<>();
 	
+	public List<Slide> findAGoodRandomSolution(List<Photo> photos, int numberOfIterations) {
+        List<Slide> currentSolution = null;
+        int bestScore = 0;
+
+        for(int i = 0; i < numberOfIterations; i++) {
+        	
+            List<Slide> solution = makeRandomSlideShow(Copier.duplicate(photos));
+            int score = CalculateIntrest.calculateIntrest(solution);
+            System.out.println(score);
+
+            if(score > bestScore) {
+                bestScore = score;
+                currentSolution = solution;
+            }
+        }
+
+        return currentSolution;
+    }
 	
 	public List<Slide> makeRandomSlideShow(List<Photo> photos) {
+		
+		
 		
 		Random random = new Random();
 		int randomInitialPhoto = random.nextInt(photos.size()-1);

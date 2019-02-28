@@ -11,7 +11,7 @@ public class CalculateIntrest {
 	
 	
 	// Slide
-	public static int CalculateIntrest(Slide currentPhotoSlide, Slide nextPhotoSlide)
+	public static int calculateIntrest(Slide currentPhotoSlide, Slide nextPhotoSlide)
 	{
 		
 		
@@ -101,15 +101,25 @@ public class CalculateIntrest {
 		}
 		
 		
-		System.out.println("IntrestCheck");
+		/*System.out.println("IntrestCheck");
 		System.out.println("numberOfCommonTags : " +numberOfCommonTags);
 		System.out.println("numberOfTagsInCurrentButNotNext : " +numberOfTagsInCurrentButNotNext);
 		System.out.println("numberOfTagsInNexbutNotCurrent : " +numberOfTagsInNexbutNotCurrent);
 		System.out.println("Result : " +Math.min(numberOfCommonTags, Math.min(numberOfTagsInCurrentButNotNext,numberOfTagsInNexbutNotCurrent)) );
-		
+		*/
 		
 		return Math.min(numberOfCommonTags, Math.min(numberOfTagsInCurrentButNotNext,numberOfTagsInNexbutNotCurrent));
 		
+	}
+
+	public static int calculateIntrest(List<Slide> solution) {
+		int score = 0;
+		
+		for(int i = 0; i < solution.size()-1; i++) {
+			score += calculateIntrest(solution.get(i), solution.get(i+1));
+		}
+		
+		return score;
 	}
 
 }
