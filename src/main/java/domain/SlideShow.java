@@ -1,6 +1,8 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -18,25 +20,38 @@ public class SlideShow {
 		currentSlides.add(slide);	
 		photos.remove(randomInitialPhoto);
 		
+		LinkedList<Photo> verticalPhotos = new LinkedList<>();
+		LinkedList<Photo> horizontalPhotos = new LinkedList<>();
 		
-		for(Photo photo : photos) {		
-			Slide newSlide = new Slide();
-			int photoIndex = random.nextInt(photos.size()-1);
-			
-			// take 2 pictures
-			if(photos.get(photoIndex).vertical) {
-				newSlide.photos.add(photos.get(photoIndex))
-				//get another vertical photo
-				for (Photo vertPhoto : photos)
-					int nextPhoto = random.nextInt(photos.size()-1);
-					if(photos.get(nextPhoto).vertical) {
-						slide.photos.add()
-					
-					}
-			// take 1 picture
+		for(Photo photo : photos) {
+			if(photo.vertical) {
+				verticalPhotos.add(photo);
 			} else {
-				newSlide.photos.add(photos.get(photoIndex))
+				horizontalPhotos.add(photo);
+			}
+		}
+		
+		Collections.shuffle(verticalPhotos);
+		Collections.shuffle(horizontalPhotos);
+		
+		while(verticalPhotos.size() > 0 || horizontalPhotos.size() > 0) {		
+			Slide newSlide = new Slide();
+			
+			if(random.nextBoolean() && !horizontalPhotos.isEmpty()) {
+				newSlide.photos.add(horizontalPhotos.getFirst());
+				horizontalPhotos.removeFirst();
+			} else if(!verticalPhotos.isEmpty()) {
+				newSlide.photos.add(verticalPhotos.getFirst());
+				verticalPhotos.removeFirst();
 				
+				if(!verticalPhotos.isEmpty()) {
+					newSlide.photos.add(verticalPhotos.getFirst());
+					verticalPhotos.removeFirst();
+				}
+			}
+			
+			if(newSlide.photos.size() > 0) {
+				currentSlides.add(newSlide);
 			}
 		}
 		
