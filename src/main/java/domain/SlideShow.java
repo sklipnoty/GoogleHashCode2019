@@ -10,9 +10,7 @@ import utils.CalculateIntrest;
 import utils.Copier;
 
 public class SlideShow {
-	
-	public List<Slide> currentSlides = new ArrayList<>();
-	
+		
 	public List<Slide> findAGoodRandomSolution(List<Photo> photos, int numberOfIterations) {
         List<Slide> currentSolution = null;
         int bestScore = 0;
@@ -21,7 +19,7 @@ public class SlideShow {
         	
             List<Slide> solution = makeRandomSlideShow(Copier.duplicate(photos));
             int score = CalculateIntrest.calculateIntrest(solution);
-            System.out.println(score);
+            System.out.println("Iteration " + i + " CurrentScore " +score);
 
             if(score > bestScore) {
                 bestScore = score;
@@ -33,8 +31,8 @@ public class SlideShow {
     }
 	
 	public List<Slide> makeRandomSlideShow(List<Photo> photos) {
-		
-		
+
+		List<Slide> currentSlides = new ArrayList<>();
 		
 		Random random = new Random();
 		int randomInitialPhoto = random.nextInt(photos.size()-1);

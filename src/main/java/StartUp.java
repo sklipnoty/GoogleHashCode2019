@@ -4,15 +4,21 @@ import domain.Photo;
 import domain.Slide;
 import domain.SlideShow;
 import io.InputReader;
+import io.OutputWriter;
 import utils.CalculateIntrest;
 
 public class StartUp {
 	public static void main(String args[]) {
-		
-		List<Photo> photos = InputReader.readInputFile("resources/a_example.txt");
+		String a = "resources/a_example.txt";
+		String b = "resources/b_lovely_landscapes.txt";
+		String c = "resources/c_memorable_moments.txt";
+		String d = "resources/d_pet_pictures.txt";
+		String e = "resources/e_shiny_selfies.txt";
+
+		List<Photo> photos = InputReader.readInputFile(b);
 		System.out.println("Read " + photos.size() + " photos.");
 		SlideShow sl = new SlideShow();
-		List<Slide> slides = sl.findAGoodRandomSolution(photos, 200);
-
+		List<Slide> slides = sl.findAGoodRandomSolution(photos, 5000);
+		OutputWriter.writeOutput("resources/bsolution.txt", photos, slides);
 	}
 }
