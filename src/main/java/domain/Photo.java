@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Photo {
+	public int index;
 	public List<String> tags = new ArrayList<String>();	
 	public boolean vertical;
 	public int numberOfTags;
-	
-	
-	
 	
 	@Override
 	public int hashCode() {

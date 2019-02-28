@@ -15,10 +15,10 @@ public class StartUp {
 		String d = "resources/d_pet_pictures.txt";
 		String e = "resources/e_shiny_selfies.txt";
 
-		List<Photo> photos = InputReader.readInputFile(e);
+		List<Photo> photos = InputReader.readInputFile(d);
 		System.out.println("Read " + photos.size() + " photos.");
 		SlideShow sl = new SlideShow();
-		List<Slide> slides = sl.findAGoodRandomSolution(photos, 100);
-		OutputWriter.writeOutput("resources/esolution.txt", photos, slides);
+		List<Slide> slides = sl.findAGoodRandomSolution(photos, 50);
+		OutputWriter.writeOutput("resources/dsolution.txt", photos, slides);
 	}
 }

@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import domain.Photo;
@@ -32,12 +33,15 @@ public class InputReader {
 		 lines.remove(0);
 		 
 		 for(String photoLine : lines) {
+			  int index = 0;
 			  
 			  Photo photo = new Photo();	
 			  String[] fields = photoLine.split(" ");
 			  boolean vertical = false;
 			  
-			  if(fields[0].equals("H")) {
+			 // System.out.println(Arrays.deepToString(fields));
+			  
+			  if(fields[0].charAt(0) == 'H') {
 				  vertical = false;
 			  } else {
 				  vertical = true;
@@ -51,6 +55,9 @@ public class InputReader {
 			  
 			  photo.vertical = vertical;
 			  photo.numberOfTags = numberOfTags;
+			  photo.index = index;
+			  index++;
+			  
 			  photos.add(photo);
 		 }
 		 

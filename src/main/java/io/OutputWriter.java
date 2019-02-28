@@ -24,21 +24,28 @@ public class OutputWriter {
 			
 			int numSlides = slideshow.size();
 			
-			printWriter.println(numSlides + "");
+			printWriter.print(numSlides);
+			printWriter.flush();
 			
 			for(Slide slide : slideshow) {
 				String line = "";
 				if (slide.photos.size() == 2) {
-					int i = photos.indexOf(slide.photos.get(0));
-					int j = photos.indexOf(slide.photos.get(1));
+					int i = slide.photos.get(0).index;
+					int j = slide.photos.get(1).index;
 					line = String.valueOf(i) + " " + String.valueOf(j);
-					printWriter.println(line);
+					printWriter.print("\n" + line );
+					printWriter.flush();
+
 				} else {
-					int i = photos.indexOf(slide.photos.get(0));
-					printWriter.println(String.valueOf(i));
+					int i = slide.photos.get(0).index;
+					printWriter.print("\n" + String.valueOf(i));
+					printWriter.flush();
 				}
 			}
 			
+			
+			
+			printWriter.flush();
 			printWriter.close();
 			fileWriter.close();
 		} catch (IOException e) {
