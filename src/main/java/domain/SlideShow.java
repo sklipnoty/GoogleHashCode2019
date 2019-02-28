@@ -16,7 +16,6 @@ public class SlideShow {
         int bestScore = 0;
 
         for(int i = 0; i < numberOfIterations; i++) {
-        	
             List<Slide> solution = makeRandomSlideShow(Copier.duplicate(photos));
             int score = CalculateIntrest.calculateIntrest(solution);
             System.out.println("Iteration " + i + " CurrentScore " +score);

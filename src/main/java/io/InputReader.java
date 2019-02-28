@@ -31,9 +31,9 @@ public class InputReader {
 		 
 		 int numberOfPhotosInCollection = Integer.valueOf(lines.get(0));
 		 lines.remove(0);
-		 
+		 int index = 0;
+
 		 for(String photoLine : lines) {
-			  int index = 0;
 			  
 			  Photo photo = new Photo();	
 			  String[] fields = photoLine.split(" ");
@@ -56,7 +56,7 @@ public class InputReader {
 			  photo.vertical = vertical;
 			  photo.numberOfTags = numberOfTags;
 			  photo.index = index;
-			  index++;
+			  index += 1;
 			  
 			  photos.add(photo);
 		 }

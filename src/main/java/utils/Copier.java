@@ -16,6 +16,7 @@ public class Copier {
 			p.numberOfTags = photo.numberOfTags;
 			p.tags = photo.tags;
 			p.vertical = photo.vertical;
+			p.index = photo.index;
 			
 			newList.add(p);
 		}
