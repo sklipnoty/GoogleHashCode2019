@@ -55,13 +55,14 @@ public class SlideShow {
 		Collections.shuffle(verticalPhotos);
 		Collections.shuffle(horizontalPhotos);
 		
-		while(verticalPhotos.size() > 0 || horizontalPhotos.size() > 0) {		
+		while(verticalPhotos.size() > 2 || horizontalPhotos.size() > 0) {		
 			Slide newSlide = new Slide();
 			
 			if(random.nextBoolean() && !horizontalPhotos.isEmpty()) {
 				newSlide.photos.add(horizontalPhotos.getFirst());
 				horizontalPhotos.removeFirst();
-			} else if(!verticalPhotos.isEmpty()) {
+			} else if((verticalPhotos.size() > 2)) {
+				
 				newSlide.photos.add(verticalPhotos.getFirst());
 				verticalPhotos.removeFirst();
 				
