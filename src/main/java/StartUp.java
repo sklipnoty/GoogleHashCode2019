@@ -18,9 +18,7 @@ public class StartUp {
 		List<Photo> photos = InputReader.readInputFile(e);
 		System.out.println("Read " + photos.size() + " photos.");
 		SlideShow sl = new SlideShow();
-		sl.PotentialGoodCouples(photos);
-		
-		List<Slide> slides = sl.findAGoodRandomSolution(photos, 500);
-		OutputWriter.writeOutput("resources/esolution.txt", photos, slides);
+		List<Slide> slides = sl.findAGoodRandomSolution(photos, 50);
+		OutputWriter.writeOutput("resources/bsolution.txt", photos, slides);
 	}
 }

@@ -11,14 +11,8 @@ public class Photo {
 	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + numberOfTags;
-		result = prime * result + ((tags == null) ? 0 : tags.hashCode());
-		result = prime * result + (vertical ? 1231 : 1237);
-		return result;
+		return index;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -29,6 +23,8 @@ public class Photo {
 		if (getClass() != obj.getClass())
 			return false;
 		Photo other = (Photo) obj;
+		if (index != other.index)
+			return false;
 		if (numberOfTags != other.numberOfTags)
 			return false;
 		if (tags == null) {
@@ -40,10 +36,7 @@ public class Photo {
 			return false;
 		return true;
 	}
-
-
-
-
+	
 	@Override
 	public String toString() {
 		return "Photo [tags=" + tags + ", vertical=" + vertical + ", numberOfTags=" + numberOfTags + "]";
