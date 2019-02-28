@@ -9,6 +9,7 @@ public class StartUp {
 	public static void main(String args[]) {
 		
 		List<Photo> photos = InputReader.readInputFile("resources/a_example.txt");
+		System.out.println("Read " + photos.size() + " photos.");
 		SlideShow sl = new SlideShow();
 		List<Slide> slides = sl.makeRandomSlideShow(photos);
 		
