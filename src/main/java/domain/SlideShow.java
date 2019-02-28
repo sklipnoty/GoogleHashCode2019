@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeMap;
 
 import utils.CalculateIntrest;
 import utils.Copier;
@@ -66,5 +68,65 @@ public class SlideShow {
 		
 		
 		return currentSlides;
+	}
+	
+	public void PotentialGoodCouples(List<Photo> photos) {
+
+		List<Slide> currentSlides = new ArrayList<>();
+		
+		Random random = new Random();
+		List<Photo> verticalPhotos = new ArrayList<>();
+		List<Photo> horizontalPhotos = new ArrayList<>();
+		
+		for(Photo photo : photos) {
+			if(photo.vertical) {
+				verticalPhotos.add(photo);
+			} else {
+				horizontalPhotos.add(photo);
+			}
+		}
+		
+		TreeMap<Integer, List<Slide>> mapping = new TreeMap<>();
+
+		
+		for(Photo hPhoto : horizontalPhotos) {
+			Slide s1 = new Slide();
+			s1.photos.add(hPhoto);
+			int bestScore = 0;
+			List<Slide> currentBest = new ArrayList<>();
+			
+			for(Photo photo2 : horizontalPhotos) {
+				Slide s2 = new Slide();
+				s2.photos.add(photo2);
+				
+				int score = CalculateIntrest.calculateIntrest(s1, s2);
+				
+				if(score > bestScore) {
+					bestScore = score;
+					currentBest = new ArrayList<>();
+					currentBest.add(s1);
+					currentBest.add(s2);
+					
+					mapping.put(bestScore, currentBest);
+				}
+			}
+		}
+		
+		Set<Integer> scores = mapping.keySet();
+		
+		for(Integer score :scores) {
+			System.out.println(score);
+		}
+		
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

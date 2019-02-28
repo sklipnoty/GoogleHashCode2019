@@ -11,5 +11,4 @@ public class Slide {
 		return "Slide [photos=" + photos + "]";
 	}
 	
-	
 }
