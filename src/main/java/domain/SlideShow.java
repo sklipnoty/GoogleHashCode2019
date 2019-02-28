@@ -1,6 +1,8 @@
 package domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -18,13 +20,38 @@ public class SlideShow {
 		currentSlides.add(slide);	
 		photos.remove(randomInitialPhoto);
 		
+		LinkedList<Photo> verticalPhotos = new LinkedList<>();
+		LinkedList<Photo> horizontalPhotos = new LinkedList<>();
+		
 		for(Photo photo : photos) {
-			// take 2 pictures
-			if(random.nextBoolean()) {
-				
-			// take 1 picture
+			if(photo.vertical) {
+				verticalPhotos.add(photo);
 			} else {
+				horizontalPhotos.add(photo);
+			}
+		}
+		
+		Collections.shuffle(verticalPhotos);
+		Collections.shuffle(horizontalPhotos);
+		
+		while(verticalPhotos.size() > 0 || horizontalPhotos.size() > 0) {		
+			Slide newSlide = new Slide();
+			
+			if(random.nextBoolean() && !horizontalPhotos.isEmpty()) {
+				newSlide.photos.add(horizontalPhotos.getFirst());
+				horizontalPhotos.removeFirst();
+			} else if(!verticalPhotos.isEmpty()) {
+				newSlide.photos.add(verticalPhotos.getFirst());
+				verticalPhotos.removeFirst();
 				
+				if(!verticalPhotos.isEmpty()) {
+					newSlide.photos.add(verticalPhotos.getFirst());
+					verticalPhotos.removeFirst();
+				}
+			}
+			
+			if(newSlide.photos.size() > 0) {
+				currentSlides.add(newSlide);
 			}
 		}
 		
